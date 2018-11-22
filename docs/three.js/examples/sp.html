@@ -172,6 +172,25 @@
     mesh0.position.y = -1;
     markerScene.add(mesh0);
 
+    function onProgress(xhr) { console.log( (xhr.loaded / xhr.total * 100) + '% loaded' ); }
+    function onError(xhr) { console.log( 'An error happened' ); }
+
+    new THREE.MTLLoader()
+        .setPath( 'models/' )
+        .load( 'fish-2.mtl', function ( materials ) {
+            materials.preload();
+            new THREE.OBJLoader()
+                .setMaterials( materials )
+                .setPath( '../obj/' )
+                .load( 'fish-2.obj', function ( group ) {
+                    var mesh2 = group.children[0];
+                    mesh2.material.side = THREE.DoubleSide;
+                    mesh2.position.y = -0.25;
+                    mesh2.scale.set(0.20,0.20,0.20);
+                    markerScene.add(mesh2);
+                }, onProgress, onError );
+        });
+
     //markerScene.add(mesh)
 
 
