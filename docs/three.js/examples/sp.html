@@ -142,15 +142,33 @@
 	mesh.position.y	= geometry.parameters.height/2
 	markerScene.add(mesh)
 
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial();
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
-	markerScene.add( mesh );
+    var loader = new THREE.FontLoader();
 
-	onRenderFcts.push(function(delta){
-		mesh.rotation.x += delta * Math.PI
-	})
+    loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+
+        var geometry = new THREE.TextGeometry( 'SP', {
+            font: font,
+            size: 80,
+            height: 5,
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: 10,
+            bevelSize: 8,
+            bevelSegments: 5
+        } );
+
+        var material	= new THREE.MeshNormalMaterial();
+        var mesh	= new THREE.Mesh( geometry, material );
+        mesh.position.y	= 0.5
+        markerScene.add( mesh );
+
+        onRenderFcts.push(function(delta){
+            mesh.rotation.z += delta * Math.PI
+        })
+
+    } );
+	//var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
