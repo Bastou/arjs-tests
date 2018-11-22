@@ -80,7 +80,7 @@
     ////////////////////////////////////////////////////////////////////////////////
 
     // set patternRatio
-    artoolkitProfile.contextParameters.patternRatio = 0.75
+    artoolkitProfile.contextParameters.patternRatio = 0.9
 
     // create atToolkitContext
     var arToolkitContext = new THREEx.ArToolkitContext(artoolkitProfile.contextParameters)
@@ -107,8 +107,8 @@
     var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
         type : 'pattern',
         // patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
-        patternUrl : '/arjs-tests/sp/data/markers/pattern-marker-sp-75.patt',
-    })
+        patternUrl : THREEx.ArToolkitContext.baseURL + 'examples/marker-training/examples/pattern-files/pattern-arjs.patt',
+    });
 
 
     // build a smoothedControls
