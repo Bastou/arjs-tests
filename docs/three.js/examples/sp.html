@@ -141,8 +141,11 @@
 	// var mesh	= new THREE.Mesh( geometry, material );
 	// mesh.position.y	= geometry.parameters.height/2
 
+    var ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
+    markerScene.add( ambientLight );
+
     // the inside of the hole
-    var geometry1	= new THREE.CubeGeometry(1,1,1);
+    var geometry1	= new THREE.CubeGeometry(2,2,2);
     var loader = new THREE.TextureLoader();
     var texture = loader.load( '../img/tiles.jpg' );
     var material1	= new THREE.MeshLambertMaterial({
@@ -157,7 +160,7 @@
     markerScene.add( mesh1 );
 
     // the invisibility cloak (box with a hole)
-    var geometry0 = new THREE.BoxGeometry(1,1,1);
+    var geometry0 = new THREE.BoxGeometry(2,2,2);
     geometry0.faces.splice(4, 2); // make hole by removing top two triangles
 
     var material0 = new THREE.MeshBasicMaterial({
