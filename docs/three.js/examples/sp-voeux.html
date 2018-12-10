@@ -17,11 +17,16 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
 	<a href='/arjs-tests/' target='_blank'>Home</a>
 	Test hole in the wall
-	<video id="video" autoplay="" loop="" crossorigin="anonymous" webkit-playsinline="" style="display:none">
+	<video id="video" autoplay="" loop="" crossorigin="anonymous" webkit-playsinline="" style="display:none" muted>
 		<source src="../video/sintel.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
 		<source src="../video/sintel.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
 	</video>
+	<script>
+        var video  = document.getElementById('video');
+        video.play();
+	</script>
 </div><script>
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +116,7 @@
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
 		type : 'pattern',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
-		patternUrl : '/arjs-tests/sp/data/markers/pattern-marker-sp-75.patt',
+		patternUrl : '/arjs-tests/sp/data/markers/pattern-marker-sp-75-02.patt',
 	})
 
 	// var markerControlsB = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
