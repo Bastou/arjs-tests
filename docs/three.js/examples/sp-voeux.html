@@ -106,17 +106,15 @@
 	//          Create a ArMarkerControls
 	////////////////////////////////////////////////////////////////////////////////
 
-	var markerGroupA = new THREE.Group
-	scene.add(markerGroupA)
-	var markerControlsA = new THREEx.ArMarkerControls(arToolkitContext, markerGroupA, {
+	var markerGroup = new THREE.Group
+	scene.add(markerGroup)
+	var markerControlsA = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
 		type : 'pattern',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
 		patternUrl : '/arjs-tests/sp/data/markers/pattern-marker-sp-75.patt',
 	})
 
-    var markerGroupB = new THREE.Group
-    scene.add(markerGroupB)
-	var markerControlsB = new THREEx.ArMarkerControls(arToolkitContext, markerGroupB, {
+	var markerControlsB = new THREEx.ArMarkerControls(arToolkitContext, markerGroup, {
 		type : 'pattern',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
 		patternUrl : '/arjs-tests/sp/data/markers/pattern-marker-sp-75-02.patt',
