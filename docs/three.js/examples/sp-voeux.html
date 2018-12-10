@@ -17,6 +17,10 @@
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center;z-index:1';>
 	<a href='/arjs-tests/' target='_blank'>Home</a>
 	Test hole in the wall
+	<video id="video" autoplay="" loop="" crossorigin="anonymous" webkit-playsinline="" style="display:none">
+		<source src="./video/sintel.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+		<source src="./video/sintel.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+	</video>
 </div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
@@ -151,33 +155,19 @@
     var ambientLight = new THREE.AmbientLight( 0xcccccc, 1.0 );
     markerScene.add( ambientLight );
 
-    // the inside of the hole
-    var geometry1	= new THREE.CubeGeometry(2,2,2);
-    var loader = new THREE.TextureLoader();
-    var texture = loader.load( '../img/tiles.jpg' );
-    var material1	= new THREE.MeshLambertMaterial({
-        transparent : true,
-        map: texture,
-        side: THREE.BackSide
-    });
+    let geometry1 = new THREE.PlaneBufferGeometry(2,2, 4,4);
+
+    let video = document.getElementById( 'video' );
+    let texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
+    let material1 = new THREE.MeshBasicMaterial( { map: texture } );
 
     mesh1 = new THREE.Mesh( geometry1, material1 );
-    mesh1.position.y = -1;
+    mesh1.rotation.x = -Math.PI/2;
 
-    markerScene.add( mesh1 );
-
-    // the invisibility cloak (box with a hole)
-    var geometry0 = new THREE.BoxGeometry(2,2,2);
-    geometry0.faces.splice(4, 2); // make hole by removing top two triangles
-
-    var material0 = new THREE.MeshBasicMaterial({
-        colorWrite: false
-    });
-
-    var mesh0 = new THREE.Mesh( geometry0, material0 );
-    mesh0.scale.set(1,1,1).multiplyScalar(1.01);
-    mesh0.position.y = -1;
-    markerScene.add(mesh0);
+    markerScene.add(mesh1);
 
     //markerScene.add(mesh)
 
